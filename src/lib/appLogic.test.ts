@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { parseInventoryCsv, normalizeCardName, ownedQty } from './inventory.ts'
 import { toManaPoolUrl, toTcgPlayerUrl, ebayListing, decklistText } from './exports.ts'
 import { validateDeck } from './deckBuilder.ts'
+import { identityQuery, pipString, withinIdentityQuery } from './scryfall.ts'
 import type { DeckEntry, GeneratedDeck, ScryfallCard } from '../types.ts'
 
 function fakeCard(name: string, extra?: Partial<ScryfallCard>): ScryfallCard {
@@ -88,6 +89,15 @@ describe('exports', () => {
     expect(listing.title.toLowerCase()).toContain('krenko')
     expect(listing.body).toContain('DECKLIST')
     expect(listing.body).toContain('Lightning Bolt')
+  })
+})
+
+describe('color identity queries', () => {
+  it('emits Scryfall pips in WUBRG order', () => {
+    expect(pipString(['G', 'W'])).toBe('wg')
+    expect(identityQuery(['G', 'W'])).toBe('id:wg')
+    expect(withinIdentityQuery(['R', 'U'])).toBe('id<=ur')
+    expect(identityQuery(['C'])).toBe('id:c')
   })
 })
 

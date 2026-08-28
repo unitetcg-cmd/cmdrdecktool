@@ -256,7 +256,9 @@ async function resolveCommander(
         base,
       )
     } catch {
-      return await randomCard('is:commander f:commander game:paper usd<=8', base)
+      throw new Error(
+        'Could not find a legal commander for that color identity and budget. Try different colors or a named commander.',
+      )
     }
   }
 }

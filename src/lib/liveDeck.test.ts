@@ -24,6 +24,7 @@ describe.skipIf(!live)('live Scryfall commander deck', () => {
       expect(deck.commander.legalities.commander).toBe('legal')
 
       const identity = deck.commander.color_identity
+      expect([...identity].sort().join('')).toBe('GW')
       for (const entry of deck.entries) {
         expect(colorIdentityOk(entry.card, identity)).toBe(true)
         expect(entry.card.legalities.commander).toBe('legal')

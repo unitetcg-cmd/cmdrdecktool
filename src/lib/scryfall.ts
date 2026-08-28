@@ -168,14 +168,20 @@ export function colorIdentityOk(card: ScryfallCard, identity: string[]): boolean
   return card.color_identity.every((c) => identity.includes(c))
 }
 
+export function pipString(colors: string[]): string {
+  const order = ['W', 'U', 'B', 'R', 'G'] as const
+  const set = new Set(colors.map((c) => c.toUpperCase()).filter((c) => c !== 'C'))
+  return order.filter((c) => set.has(c)).join('').toLowerCase()
+}
+
 export function identityQuery(colors: string[]): string {
-  const pip = colors.filter((c) => c !== 'C').join('').toLowerCase()
+  const pip = pipString(colors)
   if (!pip) return 'id:c'
   return `id:${pip}`
 }
 
 export function withinIdentityQuery(colors: string[]): string {
-  const pip = colors.filter((c) => c !== 'C').join('').toLowerCase()
+  const pip = pipString(colors)
   if (!pip) return 'id:c'
   return `id<=${pip}`
 }
