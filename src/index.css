@@ -1,0 +1,51 @@
+:root {
+  --bg: #111114;
+  --bg-panel: #1a1a20;
+  --bg-input: #121216;
+  --border: #2c2c34;
+  --text: #f3f3f6;
+  --muted: #9b9ba6;
+  --lime: #c6f531;
+  --lime-dark: #9cc41a;
+  --purple: #7c3aed;
+  --purple-hover: #8b5cf6;
+  --danger: #f87171;
+  --owned: #86efac;
+  --need: #fbbf24;
+  --header-h: 64px;
+  font-family: Inter, "Segoe UI", system-ui, -apple-system, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.45;
+  font-weight: 400;
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: var(--lime);
+}
